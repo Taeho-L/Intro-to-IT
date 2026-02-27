@@ -1,1 +1,28 @@
+# Problem and Outcomes
+
+The university wants to create a smart parking barrier system at its main gate that:
+  - Automatically open the barrier for registered staff and students.
+  - Count the number of cars in the parking lot.
+  - Display the number of available spots.
+  - Trigger an alert if someone tries to enter when the parking lot is full.
+
+The goal is to simulate and implement the logic using the Integrated Problem-Solving Process.
+
+Goal - To design a smart parking barrier system based on number of cars and parking lots.
+
+Constraints - 
+
+## Inputs
+Entry of Car - from entry gate
+Exit of Car - from exit gate
+Registered Personel - from card scanner
+
+## Outputs
+Alert if full - from entry gate
+Open barrier for registered personel - from entry gate
+Parking Spot Measure - from number of car
+
+## Constant
+Total Parking Spots
+
 
