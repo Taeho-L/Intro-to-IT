@@ -19,10 +19,25 @@ Registered Personel - from card scanner
 
 ## Outputs
 Alert if full - from entry gate
-Open barrier for registered personel - from entry gate
+Open/close barrier for registered personel - from gates
 Parking Spot Measure - from number of car
 
 ## Constant
 Total Parking Spots
 
+## Assumptions
+Registration database is up to date
+Each vehicle takes up one parking space.
 
+## Expected Outcome
+Registered personel with available parking lot --> Granted Entry
+Registered personel without available parking lot --> Alert, No Entry
+Unregistered personel --> Alert, No Entry
+
+Max Capacity | Constant | 100 vehicles
+Car Count | Variable | 75 vehicles
+Barrier Control | Output | Open/Close
+Alert | Output | On/Off
+Registration | Decision | Yes/No
+Display | Output | 25 spots available
+Card Scanner | Input | u3309136
