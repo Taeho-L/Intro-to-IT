@@ -1,0 +1,94 @@
+PART 1: The Challenge
+Background: Safely Riding a Car.
+You are tasked to design a combinational logic circuit that operates an alarm in a car whenever the driver and/or passenger seats are occupied, and the seatbelts are not fastened when the car is started. The active-HIGH signals DRIV and PASS indicate the presence of the driver and passenger, respectively, and are taken from pressure-actuated switches in the seats. The signal IGN is active-HIGH when the ignition switch is on. The signal 𝐵𝐸𝐿𝑇𝐷̅̅̅̅̅̅̅̅̅̅ is active-LOW and indicates that the driver’s seatbelt is unfastened. 𝐵𝐸𝐿𝑇𝑃̅̅̅̅̅̅̅̅̅ is the corresponding signal for the passenger seatbelt.
+The alarm will be activated (LOW) whenever the car is started and either of the front seats is occupied and its seatbelt is not fastened.
+Your goal is to design the logic circuit needed to fulfill the above conditions. You must use the problem-solving process (PSP) taught during the lectures alongside the Boolean design process (BDP). Below is a step-by-step guide to assist you in this endeavour. Your tutors will also assist you in this.
+
+
+Step 1 - Understand and Define the Problem (Analyse)
+A car alarm goes off in a car when there is a driver or passenger without their seatbelts to warn them about the seatbelts.
+We need to design a system that checks the driver and passenger and if they have their seatbelts while the car ignition is on.
+Our assumption is that the sensors are working properly, as well as if the car ignition is on. We also assume that seatbelts are worn by the driver and passenger correctly.
+A limitation would be in the sensors, as differentiating between a person and an inanimate object such as a bag could activate or not activate the alarm.
+The expected output would be that the alarm goes off when the driver, passenger or both do not have their seatbelts on while the car is on and the alarm is off when either the car is off, or if the seatbelts are worn.
+
+
+
+
+Step 2 – Organise and Describe the Data
+Symbol  |  Meaning             |    Type   |  Active Logic
+DRIV    |  Driver in the seat  |    Input  | HIGH
+PASS	Passenger in the seat	Input	HIGH
+IGN	Car ignition	Input	ON/OFF
+BELTD	Driver belt	Input	LOW
+BELTP	Passenger belt	Input	LOW
+ALARM	Alarm going off	Output	LOW
+
+
+Step 3 – Plan the Solution
+1.	Monitor ignition status – IGN must be HIGH
+2.	Check if driver is seated and the driver’s belt is fastened
+3.	Check if passenger is seated and the driver’s belt is fastened.
+4.	Alarm goes off if the above conditions are not met.
+
+Step 3.2 - Truth Table
+Out of 16 conditions with IGN active. There are 7 cases with ALARM going off.
+  IGN    |  DRIV   |  PASS   |  BELTD  |  BELTP  |  ALARM  |  ALARM^
+    1    |    0    |    0	   |    0    |    0    |    0    |  	1
+    1    |  	0    |    0    |	  0    |    1    |    0    |  	1
+    1    |	  0    |    0 	 |    1	   |    0	   |    0    |    1
+    1    |    0    |    0    |    1    |    1    |    0    |    1
+    1    |    0    |    1    |    0    |    0    |    1    |    0
+    1    |    0    |    1    |    0    |    1    |    0    |    1
+    1    |    0    |    1    |    1    |    0    |    1    |    0
+    1    |    0    |    1    |    1    |    1    |    0    |    1
+    1    |    1    |    0    |    0    |    0    |    1    |    0
+    1    |    1    |    0    |    0    |    1    |    1    |    0
+    1    |    1    |    0    |    1    |    0    |    0    |    1
+    1    |    1    |    0    |    1    |    1    |    0    |    1
+    1    |    1    |    1    |    0    |    0    |    1    |    0
+    1    |    1    |    1    |    0    |    1    |    1    |    0
+    1    |    1    |    1    |    1    |    0    |    1    |    0
+    1    |    1    |    1    |    1    |    1    |    0    |    1
+
+
+Step 3.3 - Boolean Expression
+IGN DRIV^ PASS BELTD^ BELTP^
+IGN DRIV^ PASS BELTD BELTP^
+IGN DRIV PASS^ BELTD^ BELTP^
+IGN DRIV PASS^ BELTD^ BELTP
+IGN DRIV PASS BELTD^ BELTP^
+IGN DRIV PASS BELTD^ BELTP
+IGN DRIV PASS BELTD BELTP^
+
+Simplified Formula:
+{IGN [(DRIV & BELTD^) (PASS & BELTP^)]}^
+{IGN [(DRIV & BELTD^) OR (PASS & BELTP^)]}^
+
+ALARM^ = a + b + c + d + e
+Alarm should go off if an output of 0 for ALARM^ is sensed.
+
+
+Step 3.4&5 – Flowchart & Pseudocode
+-	Can use pseudocode logic in flowchart?
+
+
+IF(IGN AND [(DRIV & BELTD^) OR (PASS & BELTD^)])
+OUTPUT(ALARM = 0)
+ELSE(ALARM = 1)
+
+
+
+
+Step 4 – Implement the Solution
+
+Step 4.1 – Logic Circuit
+ 
+
+Step 4.2 – Python Code
+
+
+Step 5 – Test and Refine the Solution (Debug & Verify)
+
+
+
